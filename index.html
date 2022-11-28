@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" type="text/css" href="style.css" />
+    <script src="https://cdn.jsdelivr.net/vue/1.0.28/vue.min.js"></script>
+    
+    
+</head>
+
+<body  id="app">
+    <div>
+        <form class="flex-container">
+            <div class="formulario">
+                <label for="valor1">Informe o primeiro valor</label>
+                <input type="number" name="valor1" id="primeirovalor" v-model='primeirovalor'/>
+            </div>
+
+            <div class="formulario" v-if="primeirovalor">
+                <label for="valor2">Informe o segundo valor</label>
+                <input type="number" name="valor2" id="segundovalor" v-model='segundovalor'/>
+            </div>
+            <div class="formulario" v-if="segundovalor">
+                <select id="operacoes" v-model="operador">
+                    <option value="selecione">Selecione o operador</option>
+                    <option value="soma">+</option>
+                    <option value="subtracao">-</option>
+                    <option value="multiplicacao">*</option>
+                    <option value="divisao">/</option>
+                    <option value="porcentagem">%</option>
+                </select>
+            </div>
+
+            <div class="formulario" v-if="resultado">
+                <label for="resultado">Resultado</label>
+                <input type="number" name="resultado" id="resultado" disabled v-model="resultado">
+
+        </form>
+    </div>
+
+    <div class="formulario2">
+        <button id="confirmar" v-on:click="confirmar" v-if="operador!='selecione'">Calcular</button>
+        <button id="limpar" @click="limpar" v-if="primeirovalor">Limpar</button>
+    </div>
+    <script src="index.js"></script>
+</body>
+
+</html>
